@@ -9,7 +9,7 @@ from sklearn.svm import LinearSVC
 from sklearn.pipeline import Pipeline
 
 # ✅ YouTube API Setup
-API_KEY = 'AIzaSyD0q1NIvX9vTKiDJI5a2rtCpQvlNGFAUeM'
+API_KEY = 'Insert-Your-APIKey-Here'
 youtube = build('youtube', 'v3', developerKey=API_KEY)
 
 # ✅ Load and Prepare Training Data
