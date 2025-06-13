@@ -5,6 +5,8 @@
 ![NLP](https://img.shields.io/badge/Model-LinearSVC-orange)  
 ![Status](https://img.shields.io/badge/status-Active-brightgreen)
 
+[![Deployed](https://img.shields.io/badge/Live%20Demo-Click%20Here-brightgreen?style=for-the-badge)](https://youtube-comment-sentiment-analyzer-25.streamlit.app/)
+
 > 💬 A Streamlit-powered app that fetches and classifies YouTube comments into **Good**, **Bad**, or **Neutral** using a trained ML pipeline built on TF-IDF and LinearSVC.
 
 ---
