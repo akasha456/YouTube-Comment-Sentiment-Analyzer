@@ -7,6 +7,8 @@ import plotly.graph_objects as go
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.svm import LinearSVC
 from sklearn.pipeline import Pipeline
+from comment_loader import load_comments_from_csv
+from youtube_url import get_video_id_from_url
 
 # ✅ YouTube API Setup
 API_KEY = 'Insert-Your-APIKey-Here'
@@ -41,14 +43,6 @@ classifier_model = Pipeline([
 classifier_model.fit(X, y)
 
 # ✅ Helper Functions
-def get_video_id_from_url(video_url):
-    video_id = None
-    if 'v=' in video_url:
-        video_id = video_url.split('v=')[1].split('&')[0]
-    elif 'youtu.be' in video_url:
-        video_id = video_url.split('/')[-1]
-    return video_id.split('?')[0] if video_id else None
-
 def get_video_comments(video_id):
     comments = []
     try:
@@ -104,13 +98,25 @@ def main():
     st.title("YouTube Comment Sentiment Analyzer")
     st.markdown("<hr style='height:5px;border:none;background:linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet);'>", unsafe_allow_html=True)
 
+    uploaded_file = st.file_uploader("Upload a comment CSV or Xquik export:", type="csv")
     video_url = st.text_input("Enter the YouTube video URL:")
-    if st.button("Analyze") and video_url:
-        video_id = get_video_id_from_url(video_url)
-        if not video_id:
-            st.error("Invalid YouTube URL.")
+    if st.button("Analyze"):
+        if uploaded_file is not None:
+            try:
+                comments = load_comments_from_csv(uploaded_file)
+            except ValueError as error:
+                st.error(str(error))
+                return
+        elif video_url:
+            video_id = get_video_id_from_url(video_url)
+            if not video_id:
+                st.error("Invalid YouTube URL.")
+                return
+            comments = get_video_comments(video_id)
+        else:
+            st.error("Upload a CSV file or enter a YouTube URL.")
             return
-        comments = get_video_comments(video_id)
+
         categorized_comments = classify_comments(comments)
 
         if categorized_comments:

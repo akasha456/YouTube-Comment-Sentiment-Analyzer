@@ -18,6 +18,7 @@
 - 📊 **Interactive Visuals** using Plotly donut charts
 - 🧠 **Text Classification** using TF-IDF + SVM (LinearSVC)
 - 🌐 **Streamlit UI** for easy interaction and visualization
+- 📄 **CSV Uploads** for existing comment exports and Xquik Tweet Text exports
 
 ---
 
@@ -43,6 +44,10 @@ pip install -r requirements.txt
 
 > 🗂️ Place your `YoutubeCommentsDataSet.csv` in the root directory.  
 > 🔑 Replace the `API_KEY` in `main.py` with your [YouTube Data API key](https://console.developers.google.com).
+
+You can analyze a YouTube video URL or upload a CSV containing a `comment`,
+`Tweet Text`, `text`, `review`, or `feedback` column. Xquik exports work without
+calling the YouTube API.
 
 ---
 
@@ -83,6 +88,8 @@ flowchart TD
 
 This project is licensed under the MIT License.
 
+Xquik is an independent third-party service. Not affiliated with X Corp. "Twitter" and "X" are trademarks of X Corp.
+
 ---
 
 ## 💬 Acknowledgements
@@ -97,4 +104,3 @@ This project is licensed under the MIT License.
 ## 🖼️ Screenshots
 
 [![Project-demo.jpg](https://i.postimg.cc/bvCHXqBs/Project-demo.jpg)](https://postimg.cc/SX9zCbqh)
-
