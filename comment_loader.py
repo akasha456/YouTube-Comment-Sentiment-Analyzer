@@ -1,6 +1,6 @@
 import pandas as pd
 
-COMMENT_COLUMN_ALIASES = {
+COMMENT_COLUMN_ALIASES = (
     "comment",
     "comments",
     "tweet text",
@@ -11,7 +11,7 @@ COMMENT_COLUMN_ALIASES = {
     "body",
     "review",
     "feedback",
-}
+)
 
 
 def normalize_column_name(column):

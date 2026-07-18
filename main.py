@@ -8,6 +8,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.svm import LinearSVC
 from sklearn.pipeline import Pipeline
 from comment_loader import load_comments_from_csv
+from youtube_url import get_video_id_from_url
 
 # ✅ YouTube API Setup
 API_KEY = 'Insert-Your-APIKey-Here'
@@ -42,14 +43,6 @@ classifier_model = Pipeline([
 classifier_model.fit(X, y)
 
 # ✅ Helper Functions
-def get_video_id_from_url(video_url):
-    video_id = None
-    if 'v=' in video_url:
-        video_id = video_url.split('v=')[1].split('&')[0]
-    elif 'youtu.be' in video_url:
-        video_id = video_url.split('/')[-1]
-    return video_id.split('?')[0] if video_id else None
-
 def get_video_comments(video_id):
     comments = []
     try:

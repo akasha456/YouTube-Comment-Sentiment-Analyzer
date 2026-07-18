@@ -26,6 +26,16 @@ class CommentLoaderTest(unittest.TestCase):
 
         self.assertEqual(find_comment_column(frame.columns), "comment")
 
+    def test_prefers_comment_over_tweet_text(self):
+        frame = pd.DataFrame(
+            {
+                "Tweet Text": ["Imported tweet"],
+                "Comment": ["Direct comment"],
+            }
+        )
+
+        self.assertEqual(find_comment_column(frame.columns), "Comment")
+
     def test_missing_comment_column_raises_clear_error(self):
         frame = pd.DataFrame({"created_at": ["2026-07-05"]})
 
